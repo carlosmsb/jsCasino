@@ -1,0 +1,22 @@
+{
+  "name": "jscasino",
+  "version": "1.0.0",
+  "description": "Javascript_casino_game_project",
+  "main": "project.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosmsb/jsCasino.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosmsb/jsCasino/issues"
+  },
+  "homepage": "https://github.com/carlosmsb/jsCasino#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
