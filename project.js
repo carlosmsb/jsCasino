@@ -1,5 +1,3 @@
-//5. Check if the user won
-//6. give the user their winnings
 //7. play again
 
 const prompt = require("prompt-sync")();
@@ -22,7 +20,6 @@ const SYMBOL_VALUES = {
 }
 
 //1. Deposit money
-
 const deposit = () => {
 while (true) {
     const depositAmount = prompt("Enter a deposit amount: ");
@@ -64,6 +61,7 @@ const getBet = (balance, lines) => {
         }
 };
 
+//4. Spin the slot machine
 const spin = () => {
     const symbols = [];
     for (const [symbol, count] of Object.entries(SYMBOLS_COUNT)) {
@@ -71,18 +69,50 @@ const spin = () => {
             symbols.push(symbol);
         }
     }
-        const reels = [[], [], []];
-        for (let i = 0; i < COLS; i++) {
+const reels = [];
+    for (let i = 0; i < COLS; i++) {
+        reels.push([]);
             const reelSymbols = [...symbols];
             for (let j = 0; j < ROWS; j++) {
-                    const randomIndex = Math.floor(Math.random() * reelSymbols.length)
-                const selectedSymbol = reelSymbols[]
+                const randomIndex = Math.floor(Math.random() * reelSymbols.length)
+                const selectedSymbol = reelSymbols[randomIndex];
+                reels[i].push(selectedSymbol);
+                reelSymbols.splice(randomIndex, 1);
             }
         }
+    return reels;
 };
 
-//4. Spin the slot machine
+//5. Check if the user won
+const transpose = (reels) => {
+    const rows = [];
+    for (let i = 0; i < ROWS; i++) {
+        rows.push([]);
+        for (let j = 0; j < COLS; j++) {
+            rows[i].push(reels[j][i])
+        }
+    }
+return rows
+};
+
+const printRows = (rows) => {
+    for (const row of rows) {
+        let rowString = "";
+        for (const [i, symbol] of row.entries()) {
+            rowString += symbol
+            if (i != row.length - 1) {
+                rowString += " | "
+            }
+        }
+    }
+};
+
+//6. give the user their winnings
+
 
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
 const bet = getBet(balance, numberOfLines);
+const reels = spin();
+const rows = transpose(reels);
+printRows(rows);
